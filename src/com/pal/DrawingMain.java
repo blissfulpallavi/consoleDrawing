@@ -1,4 +1,4 @@
-package com.pallavi;
+package com.pal;
 
 import java.util.Scanner;
 

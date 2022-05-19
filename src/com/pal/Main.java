@@ -1,4 +1,4 @@
-package com.pallavi;
+package com.pal;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
