@@ -17,7 +17,7 @@ public class DrawingMain {
             System.out.println("C : Creating a blank canvas");
             System.out.println("L : Creating a new line inside the canvas");
             System.out.println("R : Creating a rectangle inside the canvas");
-            System.out.println("C : Coloring the canvas with your choice of character C");
+            System.out.println("B : Coloring the canvas with your choice of character c");
             System.out.println("P : Print your canvas");
             System.out.println("Q : Quit");
             String command = in.nextLine();
@@ -35,7 +35,7 @@ public class DrawingMain {
                 drawingMain.createCanvas(len, width);
             } else if ("L".equalsIgnoreCase(command)) {
                 if (len == 0 || width == 0) {
-                    System.out.println("Please create a canvas first");
+                    System.out.println("Please create a canvas first\n");
                     continue;
                 }
                 System.out.println("Enter x1 y1 x2 y2 parameters for the line");
@@ -48,7 +48,7 @@ public class DrawingMain {
                 drawingMain.drawLine(x1, y1, x2, y2);
             } else if ("R".equalsIgnoreCase(command)) {
                 if (len == 0 || width == 0) {
-                    System.out.println("Please create a canvas first");
+                    System.out.println("Please create a canvas first\n");
                     continue;
                 }
                 System.out.println("Enter x1 y1 x2 y2 parameters for the rectangle");
@@ -61,7 +61,7 @@ public class DrawingMain {
                 drawingMain.drawRectangle(x1, y1, x2, y2);
             } else if ("B".equalsIgnoreCase(command)) {
                 if (len == 0 || width == 0) {
-                    System.out.println("Please create a canvas first");
+                    System.out.println("Please create a canvas first\n");
                     continue;
                 }
                 System.out.println("Enter x y c parameters for the rectangle");
@@ -73,7 +73,7 @@ public class DrawingMain {
                 drawingMain.colorFill(x, y, c);
             } else if ("P".equalsIgnoreCase(command)) {
                 if (len == 0 || width == 0) {
-                    System.out.println("Please create a canvas first");
+                    System.out.println("Please create a canvas first\n");
                     continue;
                 }
                 drawingMain.printGrid();
@@ -105,6 +105,10 @@ public class DrawingMain {
     }
 
     private void drawLine(int x1, int y1, int x2, int y2) {
+        if(!(x1==x2 || y1==y2)){
+            System.out.println("Invalid co-ordinates!");
+            System.out.println("Line can only be drawn horizontal or vertical!\n");
+        }
         for (int j = 0; j <= width; j++) {
             for (int i = 0; i <= len; i++) {
                 if (i >= x1 && i <= x2 && j >= y1 && j <= y2) {
@@ -132,15 +136,15 @@ public class DrawingMain {
         if (grid[x][y] == ' ') {
             grid[x][y] = c;
         }
-        if (grid[x + 1][y] == ' ') {
+        if (x + 1 <= len && grid[x + 1][y] == ' ') {
             grid[x][y] = c;
             colorFill(x + 1, y, c);
         }
-        if (grid[x][y + 1] == ' ') {
+        if (y + 1 <=width && grid[x][y + 1] == ' ') {
             grid[x][y] = c;
             colorFill(x, y + 1, c);
         }
-        if (grid[x - 1][y] == ' ') {
+        if (x - 1 <= len && grid[x - 1][y] == ' ') {
             grid[x][y] = c;
             colorFill(x - 1, y, c);
         }
